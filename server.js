@@ -22,7 +22,7 @@ app.get('/weather', async (request, response) => {
 
     const weather = weatherResponse.data;
     let forecastArray = weather.data.map((item) => {
-        return new ForeCast(item)
+        return new Forecast(item)
     });
         response.json(forecastArray)
     }).catch = () => response.send('ERROR: INVALID INPUT');
@@ -32,7 +32,7 @@ app.get('/weather', async (request, response) => {
 //     response.send('PAGE NOT FOUND')
 // });
 
-class ForeCast {
+class Forecast {
     constructor(weatherData) {
         this.date = weatherData.valid_date
         this.description = weatherData.weather.description

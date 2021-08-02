@@ -15,13 +15,37 @@ A backend server that sends location data the the UI when the user clicks explor
 
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
 
-## Architecture
+## Architecture                 
+Express, axios, and cors .
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
 
-## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
+### Name of feature: Feature #1: Set up the repository & API keys.
 
-01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
+Estimate of time needed to complete: 1 hour
 
-## Credit and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+Start time: 3:30pm
+
+Finish time: 6:00pm 
+
+Actual time needed to complete: 2hours 30 minutes
+
+
+### Name of feature: Feature #2:Getting weather Data from weather file using reqiure and making the response 
+
+Estimate of time needed to complete: 2 Hours
+
+Start time: 7:00pm
+
+Finish time: 10:00pm
+
+Actual time needed to complete: 3:00 hours 
+
+### Name of feature: Feature #3: Errors and forecast Class
+
+Estimate of time needed to complete:  1 hour
+
+Start time: 10:30pm
+
+Finish time: 12:00pm
+
+Actual time needed to complete: 1 hour 30 minute

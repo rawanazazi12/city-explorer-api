@@ -4,23 +4,16 @@ const cors = require('cors');
 require('dotenv').config();
 const app = express()
 const PORT = process.env.PORT;
-const axios = require('axios');
+// const axios = require('axios');
 app.use(cors());
 
+const getWeather = require('./controllers/Forecast.controller');
+const getMovies =require('./controllers/Movies.controller')
 
-const weatherData = require('./data/weather.json');
+app.get('/', (req, res) => {res.send('Hello World, My name is Rawan')})
 
-class Forecast {
-    constructor(weatherData) {
-        this.date = weatherData.valid_date
-        this.description = weatherData.weather.description
-    }
-
-}
-
-app.get('/', (request, response) => {
-    response.send('Hello World, My name is Rawan')
-});
+app.get('/weather',getWeather);
+app.get('/movies',getMovies);
 
 
 
@@ -50,58 +43,53 @@ app.get('/', (request, response) => {
 
 // });
 
+// app.get('/weather', async (request, response) => {
+// try{
 
-app.get('/weather', async (request, response) => {
-try{
+//     const lat = request.query.lat
+//     const lon = request.query.lon
+//     console.log(lat,lon)
+//     let url= `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_API_KEY}&lat=${lat}&lon=${lon}`
+//     const weatherResponse = await axios.get(url);
 
-    const lat = request.query.lat
-    const lon = request.query.lon
+//     // const weather = weatherResponse.data;
+//     const forecastArray = weatherResponse.data.data.map((item) => {
+//         return new Forecast(item)
+//     });
+//         response.json(forecastArray)
+// }
+//     catch(e){
+//      response.status(404).send('ERROR: INVALID INPUT');
 
-    console.log(lat,lon);
-    const weatherResponse = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_KEY}&lat=${lat}&lon=${lon}`);
+//     }
 
-    const weather = weatherResponse.data;
-    let forecastArray = weather.data.map((item) => {
-        return new Forecast(item)
-    });
-        response.json(forecastArray)
+// });
 
-}
-    catch(e){
-     response.status(404).send('ERROR: INVALID INPUT');
 
-    }
+// app.get('/movies', async (request, response) => {
+//     try{ 
+//         // const query=request.query.location;
+//         console.log(query)
+//         const moviesUrl=`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${query}`;
+//         const moviesResponse = await axios.get(moviesUrl);    
+//         const movies = moviesResponse.data.results;
 
-});
+//         console.log(moviesResponse);
 
-class Movie{
-    constructor(moviesData){
-        this.title=moviesData.original_title;
-        this.votes=moviesData.vote_count
-        this.img='http://image.tmdb.org/t/p/w342'+moviesData.poster_path;
-        this.overview=overview;
-        this.released_on=released_on
+//         let moviesArr = movies.data.map((item) => {
+//             return new Movie(item)
+//         });
+//         response.json(moviesArr)
         
-    }
-}
+//     }
+//     catch(e){
+//         response.status(404).send('ERROR: INVALID INPUT');
+        
+//     }
+    
 
-app.get('/movies', async (request, response) => {
-    try{ 
-        const moviesResponse = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${query}`);
     
-        const movies = moviesResponse.data;
-        let moviesArr = movies.data.map((item) => {
-            return new Movie(item)
-        });
-            response.json(moviesArr)
-    
-    }
-        catch(e){
-         response.status(404).send('ERROR: INVALID INPUT');
-    
-        }
-    
-    });
+// });
 
 app.listen(PORT, () => console.log(`Server started on ${PORT} `));
 

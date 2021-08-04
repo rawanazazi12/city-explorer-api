@@ -56,7 +56,9 @@ try{
 
     const lat = request.query.lat
     const lon = request.query.lon
-    const weatherResponse = await axios.get(`https://api.weatherbit.io/v2.0/history/daily?key=${process.env.WEATHER_KEY}&lat=${lat}&lon=${lon}`);
+
+    console.log(lat,lon);
+    const weatherResponse = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHER_KEY}&lat=${lat}&lon=${lon}`);
 
     const weather = weatherResponse.data;
     let forecastArray = weather.data.map((item) => {
@@ -85,7 +87,7 @@ class Movie{
 
 app.get('/movies', async (request, response) => {
     try{ 
-        const moviesResponse = await axios.get(`https://api.themoviedb.org/3/movie/550?api_key=${process.env.MOVIE_API_KEY}&query=${query}`);
+        const moviesResponse = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${query}`);
     
         const movies = moviesResponse.data;
         let moviesArr = movies.data.map((item) => {

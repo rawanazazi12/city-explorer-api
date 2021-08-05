@@ -7,14 +7,12 @@ const PORT = process.env.PORT;
 // const axios = require('axios');
 app.use(cors());
 
+app.get('/', (request, response) => {response.send('Hello World, My name is Rawan')})
 const getWeather = require('./controllers/Forecast.controller');
-const getMovies =require('./controllers/Movies.controller')
-
-app.get('/', (req, res) => {res.send('Hello World, My name is Rawan')})
-
 app.get('/weather',getWeather);
-app.get('/movies',getMovies);
 
+const getMovies =require('./controllers/Movies.controller')
+app.get('/movies',getMovies);
 
 
 // app.get('/weather', (request, response) => {

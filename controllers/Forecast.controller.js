@@ -12,11 +12,11 @@ const getWeather = async (request, response) => {
         const lon=request.query.lon;
 
         const url=`https://api.weatherbit.io/v2.0/forecast/daily?key=${WEATHERBIT_KEY}&lat=${lat}&lon=${lon}`
-        const response = await axios.get(url);
-        console.log(url);
-        const data = response.data.data.map(item => new Forecast(item));
-        response.json(data);
-        response.send('HELLO FROM WEATHER');
+        const weatherResponse = await axios.get(url);
+        const data = weatherResponse.data.data.map(item => new Forecast(item));
+        // console.log(data);
+        response.status(200).send(data);
+        // response.send('HELLO FROM WEATHER');
         
     }
     
